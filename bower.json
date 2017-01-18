@@ -1,0 +1,22 @@
+{
+  "name": "service_desk",
+  "homepage": "https://github.com/dario-podhorski/service_desk",
+  "authors": [
+    "Dario Podhorski <dpodhorski@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
