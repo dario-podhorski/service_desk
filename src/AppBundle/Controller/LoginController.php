@@ -26,7 +26,7 @@ class LoginController extends Controller
         $lastUsername = $authenticationUtils->getLastUsername();
 
         $form = $this->createForm(LoginForm::class, [
-        '_username' => $lastUsername,
+        '_email' => $lastUsername,
         ]);
 
         return $this->render('security/loginForm.html.twig',
@@ -43,5 +43,22 @@ class LoginController extends Controller
     public function logoutAction()
     {
 
+    }
+
+    /**
+     * @Route ("/loginsuccess", name="security_loginsuccess")
+     */
+    public function loginsuccessAction(){
+
+        $url = 'homepage';
+
+        if($this->isGranted('ROLE_ADMIN')){
+            $url = 'admin_page';
+        }
+        elseif ($this->isGranted('ROLE_USER')){
+            $url = 'client_page';
+        }
+
+        return $this->redirectToRoute($url);
     }
 }

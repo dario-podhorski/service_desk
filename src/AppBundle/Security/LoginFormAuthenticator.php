@@ -1,36 +1,37 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pole
- * Date: 24.01.17.
- * Time: 15:15
- */
+
 namespace AppBundle\Security;
 
 use AppBundle\Form\LoginForm;
 use Doctrine\ORM\EntityManager;
+//use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+//use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Security\Core\Security;
 
 class LoginFormAuthenticator extends AbstractFormLoginAuthenticator{
 
     private $formFactory;
     private $em;
     private $router;
+    //private $authorizationChecker;
 
     public function __construct(FormFactoryInterface $formFactory, EntityManager $em, RouterInterface $router)
     {
         $this->formFactory = $formFactory;
         $this->em = $em;
         $this->router = $router;
+        //$this->authorizationChecker = $authorizationChecker;
     }
 
 
@@ -46,6 +47,10 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator{
         $form->handleRequest($request);
 
         $data = $form->getData();
+        $request->getSession()->set(
+            Security::LAST_USERNAME,
+            $data['_email']
+        );
 
         return $data;
     }
@@ -78,10 +83,15 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator{
     }
 
 
+    protected function getDefaultSuccessRedirectUrl()
+    {
+        return $this->router->generate('security_login');
+    }
+
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
+        $response = new RedirectResponse($this->router->generate('security_loginsuccess'));
 
-        $response = new RedirectResponse($this->router->generate('admin_page'));
         return $response;
     }
 

@@ -59,6 +59,11 @@ class User implements UserInterface
      */
     private $city;
 
+    /**
+     * @ORM\Column(type="json_array");
+     */
+    private $roles = array();
+
 
 
     /**
@@ -176,8 +181,20 @@ class User implements UserInterface
 
     public function getRoles()
     {
-        return ['ROLE_USER'];
+        return $this->roles;
     }
+
+    /**
+     * @param mixed $roles
+     */
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+
 
     public function getSalt()
     {
