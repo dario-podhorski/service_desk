@@ -1,6 +1,12 @@
-{% extends'base.html.twig' %}
+{% extends'layout/basicLayout.html.twig' %}
 
 {% block body %}
-    <h1>ADMIN HOMEPAGE</h1>
-    <a href="{{ path('security_logout') }}">Logout</a>
+    {{ parent() }}
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <h1>ADMIN HOMEPAGE</h1>
+
+        </div>
+    </div>
+
 {% endblock %}

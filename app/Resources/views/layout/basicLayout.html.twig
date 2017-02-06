@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="adjust-nav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
+                <span class="logout-spn" >
+                  <a href="{{ path('security_logout') }}" style="color:#fff;">LOGOUT</a>
+                </span>
+                {% else %}
+                <span class="logout-spn" >
+                  <a href="{{ path('security_login') }}" style="color:#fff;">LOGIN</a>
+                </span>
+                {% endif %}
+            </div>
+        </div>
+
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+
+                    <li >
+                        <a href="index.html" ><i class="fa fa-desktop "></i>Dashboard</a>
+                    </li>
+
+
+                    <li>
+                        <a href="ui.html"><i class="fa fa-table "></i>UI Elements</a>
+                    </li>
+                    <li class="active-link">
+                        <a href="blank.html"><i class="fa fa-edit "></i>Blank Page</a>
+                    </li>
+
+
+
+                    <li>
+                        <a href="#"><i class="fa fa-qrcode "></i>My Link One</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-bar-chart-o"></i>My Link Two</a>
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-edit "></i>My Link Three </a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-table "></i>My Link Four</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-edit "></i>My Link Five </a>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+    </div>
+
+
+
+{% endblock %}

@@ -1,23 +1,28 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout/basicLayout.html.twig' %}
 
 {% block body %}
-    <div class="container">
-        <div class="row vertical-offset-100">
-            <div class="col-md-4 col-md-offset-4">
+    {{ parent() }}
+    <div id="page-wrapper">
+    <div id="page-inner">
 
-                <h1>Login</h1>
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-2 col-lg-4 col-lg-offset-4">
 
-                    {% if error %}
+                        <h1>Login</h1>
+
+                        {% if error %}
                         <div class="alert alert-danger">Wrong Email or Password</div>
-                    {% endif %}
+                        {% endif %}
 
-                    {{ form_start(form) }}
-                    {{ form_widget(form) }}
-                    <input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
-                    {{ form_end(form) }}
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
+                        {{ form_end(form) }}
 
-            </div>
-        </div>
+                    </div>
+                </div>
+
+    </div>
     </div>
 
 {% endblock %}

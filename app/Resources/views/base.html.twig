@@ -4,15 +4,21 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Service Desk{% endblock %}</title>
         {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/custom/css/font-awesome.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/custom/css/custom.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bootstrap-3-vert-offset-shim.css') }}"/>
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css"/>
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
         {% block body %}{% endblock %}
+
         {% block javascripts %}
         <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
         <script src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('assets/custom/js/custom.js') }}"></script>
         {% endblock %}
     </body>
 </html>
